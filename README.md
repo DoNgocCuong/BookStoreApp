@@ -68,7 +68,28 @@
 ---
 
 ## 4. Kiến trúc phần mềm
-
+1.Frontend Phần giao diện được áp dụng mô hình MVVM (Model–View–ViewModel) để tách biệt giữa giao diện, dữ liệu và logic xử lý hiển thị:
+  View: Chịu trách nhiệm hiển thị dữ liệu và nhận các thao tác từ người dùng.
+  ViewModel: Xử lý logic hiển thị, ràng buộc dữ liệu (data binding) và giao tiếp với backend thông qua RESTful API.
+  Model: Biểu diễn dữ liệu nhận từ server, như thông tin sản phẩm, đơn hàng, hay doanh thu. 
+  Cách tổ chức này giúp mã nguồn frontend rõ ràng, dễ kiểm thử và dễ mở rộng khi thêm hoặc thay đổi tính năng giao diện.
+2.Backend 
+Phần backend được tổ chức theo mô hình 3-Layer Architecture, đảm bảo phân tách rõ ràng giữa các tầng:
+  Controller: Tiếp nhận yêu cầu từ frontend, điều phối và trả kết quả phản hồi.
+  Service: Chứa toàn bộ logic nghiệp vụ của hệ thống như tính doanh thu, quản lý đơn hàng, kiểm tra tồn kho.
+  Repository: Làm việc trực tiếp với cơ sở dữ liệu, thực hiện các thao tác CRUD (Create, Read, Update, Delete).
+Dữ liệu giữa frontend và backend được trao đổi thông qua RESTful API, đảm bảo tính độc lập và khả năng thay thế công nghệ giữa hai phần.
+3.Clean Architecture trong dự án Ứng dụng được định hướng và triển khai theo Clean Architecture, đảm bảo nguyên tắc phụ thuộc hướng vào trong (Dependency Rule) – các tầng bên ngoài có thể phụ thuộc vào tầng trong, nhưng ngược lại thì không.
+  Clean Architecture ở Frontend Ở phía client, Clean Architecture được thể hiện thông qua mô hình MVVM, tương ứng với các tầng sau:
+    Presentation Layer: Gồm các View hiển thị giao diện và nhận thao tác người dùng.
+    Application Layer: Gồm các ViewModel xử lý logic hiển thị, gọi dữ liệu từ API và cập nhật lại giao diện.
+    Domain Layer: Chứa các lớp mô hình (Model) mô tả dữ liệu cốt lõi như Product, Order, Category, User.
+    Infrastructure Layer: Bao gồm các service gọi REST API, lưu dữ liệu tạm thời hoặc thao tác với bộ nhớ cục bộ.
+  Clean Architecture ở Backend Phía backend cũng tuân theo nguyên tắc của Clean Architecture, được triển khai thông qua mô hình 3-Layer:
+    Presentation Layer: Là tầng Controller, tiếp nhận request từ frontend và trả response cho client.
+    Application Layer: Là tầng Service, chịu trách nhiệm xử lý logic nghiệp vụ và điều phối dữ liệu giữa các tầng.
+    Domain Layer: Định nghĩa các đối tượng cốt lõi của hệ thống như Product, Order, Category, User.
+    Infrastructure Layer: Gồm Repository và các cấu hình truy cập cơ sở dữ liệu, giúp hệ thống kết nối và lưu trữ thông tin.
 
 ---
 
